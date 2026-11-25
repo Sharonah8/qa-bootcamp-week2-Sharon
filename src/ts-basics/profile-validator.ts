@@ -2,7 +2,7 @@ type Profile = {
     id: number 
     username: string
     settings?: {
-        notifications: boolean
+        notifications?: boolean
     } 
 }
 
