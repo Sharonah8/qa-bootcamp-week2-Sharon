@@ -16,16 +16,18 @@ test('creates a cart and adds a product successfully', async ({ request }) => {
 
     cartId = cartBody.id;
 
-    console.log('Created cart ID:', cartId);
-
-
     // Add a product to the cart
     const addProductResponse = await request.post(`${API_URL}/carts/${cartId}`, {
     data: {
-        product_id: '01M8BZ2QZQ03XYG44P4DTMKKTS',
+        product_id: '01M8CCT624DQCTEYWEQPJ0KYHX',
         quantity: 2
     }
     });
+
+    const addProductResponseBody = await addProductResponse.text();
+
+    console.log('Add product status:', addProductResponse.status());
+    console.log('Add product response:', addProductResponseBody);
 
     expect(addProductResponse.status()).toBe(200);
 
@@ -38,8 +40,6 @@ test('creates a cart and adds a product successfully', async ({ request }) => {
     const deleteCartResponse = await request.delete(`${API_URL}/carts/${cartId}`);
 
     expect(deleteCartResponse.status()).toBe(204);
-
-    console.log('Deleted cart:', cartId);
   }
 }
 });
